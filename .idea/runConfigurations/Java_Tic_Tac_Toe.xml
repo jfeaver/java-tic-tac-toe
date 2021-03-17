@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Java Tic Tac Toe" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="TicTacToe" />
+    <module name="java-tic-tac-toe" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
