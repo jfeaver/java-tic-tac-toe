@@ -8,8 +8,11 @@ public class HumanPlayer extends Player {
     }
 
     public Move getMove(Board board) {
-        // TODO: Handle Cancel
         String moveInput = JOptionPane.showInputDialog(prompt);
-        return new Move(moveInput);
+        if (moveInput != null) {
+            return new Move(moveInput);
+        } else {
+            return null;
+        }
     }
 }

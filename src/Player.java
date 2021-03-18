@@ -9,5 +9,6 @@ public abstract class Player {
         return this.mark;
     }
 
+    // A null move corresponds to quitting the game (for convenience)
     public abstract Move getMove(Board board);
 }
