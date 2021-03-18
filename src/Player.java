@@ -1,6 +1,12 @@
 public abstract class Player {
+    private final char mark;
+
+    public Player(char mark) {
+        this.mark = mark;
+    }
+
     public char getPlayerType() {
-        return 'X';
+        return this.mark;
     }
 
     public abstract Move getMove(Board board);
