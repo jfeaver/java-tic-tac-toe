@@ -13,11 +13,11 @@ public class Board {
     }
 
     public int getRows() {
-        return this.rows;
+        return rows;
     }
 
     public int getColumns() {
-        return this.columns;
+        return columns;
     }
 
     public int[] getNthEmptySpace(int n) {
@@ -31,7 +31,7 @@ public class Board {
                 row = 1;
                 column++;
             }
-            player = getPlayerAtLocation(row, column);
+            player = getPlayerAtCoordinate(row, column);
             if (player == null) {
                 count++;
             }
@@ -42,13 +42,18 @@ public class Board {
         return new int[]{row, column};
     }
 
-    public Player getPlayerAtLocation(int row, int column) {
-        if (this.rows >= row && this.columns >= column) {
-            return this.board[row][column];
+    public Player getPlayerAtLocation(int rowIndex, int columnIndex) {
+        return getPlayerAtCoordinate(rowIndex + 1, columnIndex + 1);
+    }
+
+    public Player getPlayerAtCoordinate(int row, int column) {
+        if (inBounds(row, column)) {
+            return board[row - 1][column - 1];
         }
         return null;
     }
 
+    // TODO: Add win algorithm
     public Player win() {
         if (this.noWinner) {
             return null;
@@ -66,12 +71,20 @@ public class Board {
     }
 
     public boolean makeMove(int row, int column, Player player) {
-        if (this.rows >= row && this.columns >= column && this.getPlayerAtLocation(row, column) == null) {
-            this.board[row][column] = player;
+        if (inBounds(row, column) && getPlayerAtCoordinate(row, column) == null) {
+            this.board[row - 1][column - 1] = player;
             this.parkingSpaces--;
             this.noWinner = false;
             return true;
         }
         return false;
+    }
+
+    public boolean makeMove(Move move, Player player) {
+        return makeMove(move.getRow(), move.getColumn(), player);
+    }
+
+    private boolean inBounds(int row, int column) {
+        return (row <= rows && row > 0 && column <= columns && column > 0);
     }
 }

@@ -7,7 +7,7 @@ public class RandomPlayer extends Player {
 
     public Move getMove(Board board) {
         Random rand = new Random();
-        int space = rand.nextInt(board.parkingSpaces);
+        int space = rand.nextInt(board.parkingSpaces) + 1;
         int[] coordinates = board.getNthEmptySpace(space);
         return new Move(coordinates[0], coordinates[1]);
     }
