@@ -4,6 +4,7 @@ public class Board {
     private final Player[][] board;
     public int parkingSpaces;
     private boolean noWinner;
+    private Player winner;
 
     public Board(int rows, int columns) {
         this.rows = rows;
@@ -53,13 +54,18 @@ public class Board {
         return null;
     }
 
-    // TODO: Add win algorithm
     public Player win() {
-        if (this.noWinner) {
+        if (noWinner) {
             return null;
         }
-        this.noWinner = true;
-        return null;
+        if (winner != null) {
+            return winner;
+        }
+        this.winner = new WinAlgorithm(this).call();
+        if (winner == null) {
+            this.noWinner = true;
+        }
+        return winner;
     }
 
     public boolean tie() {

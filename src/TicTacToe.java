@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 class TicTacToe {
     public static void main(String[] args) {
         Integer rows = 3;
@@ -26,6 +28,12 @@ class TicTacToe {
                 view.updateBoard(board);
                 players.nextPlayer();
             }
+        }
+        Player winner = board.win();
+        if (winner != null) {
+            JOptionPane.showMessageDialog(null, String.format("%c is the Winner!", winner.getPlayerType()));
+        } else if (board.tie()) {
+            JOptionPane.showMessageDialog(null, "Tie Game!");
         }
         System.exit(0);
     }

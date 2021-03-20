@@ -1,11 +1,13 @@
 public class Move {
-    private final Integer row;
-    private final Integer column;
+    private Integer row;
+    private Integer column;
 
     public Move(String moveInput) {
         String[] coordinates = moveInput.split(",");
-        this.row = Util.parseInt(coordinates[0]);
-        this.column = Util.parseInt(coordinates[1]);
+        if (coordinates.length == 2) {
+            this.row = Util.parseInt(coordinates[0]);
+            this.column = Util.parseInt(coordinates[1]);
+        }
     }
 
     public Move(int row, int column) {
